@@ -8,7 +8,9 @@ namespace :db do
     task :populate => :environment do
       generic_type = ResourceType.create!(:name => 'Resource')
       room_type    = ResourceType.create!(:name => 'Room')
-      room_type.resources.create!(:name => '4187 Smith Lab')
+      smith4187 = room_type.resources.create!(:name => '4187 Smith Lab')
+      has_projector_type = AttributeType.create!(:name => 'has_projector', :data_type => 'boolean')
+      smith4187.attributes.create!(:attribute_type_id => has_projector_type, :value => false)
     end
   end
 end

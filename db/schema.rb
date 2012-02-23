@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223205014) do
+ActiveRecord::Schema.define(:version => 20120223213135) do
+
+  create_table "attribute_types", :force => true do |t|
+    t.string   "name"
+    t.string   "data_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "attributes", :force => true do |t|
     t.integer  "attribute_type_id"
