@@ -58,6 +58,15 @@ describe Attribute do
       Attribute.new(:attribute_type_id => string_type.id).should_not be_valid
       Attribute.new(:attribute_type => string_type).should_not be_valid
     end
+
+    it 'should validate the existence of the attribute type' do
+      Attribute.new(:attribute_type_id => 134908234098).should_not be_valid
+    end
+
+    it 'should validate the existence of the resource' do
+      Attribute.new(:resource_id => 134908234098).should_not be_valid
+    end
+
   end
 
 end
