@@ -5,6 +5,8 @@ class Attribute < ActiveRecord::Base
 
   delegate :data_type, :to => :attribute_type
 
+  validates_presence_of :attribute_type_id, :resource_id
+
   def value
     send "#{data_type}_value"
   end
