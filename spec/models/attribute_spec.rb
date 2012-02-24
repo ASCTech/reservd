@@ -30,4 +30,14 @@ describe Attribute do
 
   end
 
+  describe 'creation' do
+
+   let(:boolean_type) { create(:boolean_type) } 
+
+    it 'should allow setting value instead of the specific column' do
+      Attribute.create!(:attribute_type_id => boolean_type, :resource_id => resource, :value => true)
+    end
+
+  end
+
 end
