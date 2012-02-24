@@ -44,17 +44,18 @@ describe Attribute do
 
     let(:string_type) { create(:string_type) }
 
+    it 'should allow valid records' do
+      Attribute.new(:attribute_type_id => string_type.id, :resource_id => resource.id).should be_valid
+      Attribute.new(:attribute_type => string_type, :resource => resource).should be_valid
+    end
+
     it 'should validate presence of attribute type' do
-      Attribute.new(:attribute_type_id => 1, :resource_id => 2).should be_valid
-      Attribute.new(:attribute_type => string_type, :resource_id => resource).should be_valid
-      Attribute.new(:resource_id => 2).should_not be_valid
+      Attribute.new(:resource_id => resource.id).should_not be_valid
       Attribute.new(:resource => resource).should_not be_valid
     end
 
     it 'should validate presence of resource' do
-      Attribute.new(:attribute_type_id => 1, :resource_id => 2).should be_valid
-      Attribute.new(:attribute_type => string_type, :resource_id => resource).should be_valid
-      Attribute.new(:attribute_type_id => 1).should_not be_valid
+      Attribute.new(:attribute_type_id => string_type.id).should_not be_valid
       Attribute.new(:attribute_type => string_type).should_not be_valid
     end
   end
