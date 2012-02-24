@@ -7,6 +7,7 @@ gem 'mysql2',  :group => [:production]
 
 gem 'jquery-rails'
 gem 'json'
+gem 'validates_existence'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
