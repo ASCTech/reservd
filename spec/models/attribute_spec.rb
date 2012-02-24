@@ -25,6 +25,13 @@ describe Attribute do
         attribute.update_attribute(:value, new_value)
         attribute.value.should == new_value
         attribute.value.should == attribute.send("#{attribute.data_type}_value")
+
+        attribute.value = nil
+        attribute.value.should be_nil
+        attribute.value.should == attribute.send("#{attribute.data_type}_value")
+        attribute.value = new_value
+        attribute.value.should == new_value
+        attribute.value.should == attribute.send("#{attribute.data_type}_value")
       end
     end
 
@@ -32,10 +39,12 @@ describe Attribute do
 
   describe 'creation' do
 
-    let(:boolean_type) { create(:boolean_type) } 
+    let(:boolean_type) { create(:boolean_type) }
 
     it 'should allow setting value instead of the specific column' do
-      Attribute.create!(:attribute_type_id => boolean_type, :resource_id => resource, :value => true)
+      attr = Attribute.create!(:attribute_type_id => boolean_type, :resource_id => resource, :value => true)
+      attr.value.should be_true
+      attr.value.should == attr.boolean_value
     end
 
   end

@@ -13,20 +13,8 @@ class Attribute < ActiveRecord::Base
     send "#{data_type}_value"
   end
 
-  def update_attribute(name, val)
-    if name.to_sym == :value
-      update_attribute("#{data_type}_value", val)
-    else
-      super
-    end
-  end
-
-  def initialize(attributes=nil, options={})
-    if attributes.present? && attributes.symbolize_keys.include?(:value)
-      attr_type_data_type = AttributeType.find(attributes[:attribute_type_id]).data_type
-      attributes["#{attr_type_data_type}_value"] = attributes.delete(:value)
-    end
-    super
+  def value=(val)
+    send "#{data_type}_value=", val
   end
 
 private
