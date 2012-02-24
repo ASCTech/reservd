@@ -27,3 +27,10 @@ group :development do
   gem 'capistrano'
   gem 'thin'
 end
+
+group :test do
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'launchy'
+  gem 'shoulda-matchers'
+end
