@@ -47,6 +47,10 @@ describe Attribute do
     it 'should allow valid records' do
       Attribute.new(:attribute_type_id => string_type.id, :resource_id => resource.id).should be_valid
       Attribute.new(:attribute_type => string_type, :resource => resource).should be_valid
+      boolean_attribute.attribute_type_id = string_type.id
+      boolean_attribute.should be_valid
+      boolean_attribute.resource_id = create(:resource).id
+      boolean_attribute.should be_valid
     end
 
     it 'should validate presence of attribute type' do
@@ -61,10 +65,14 @@ describe Attribute do
 
     it 'should validate the existence of the attribute type' do
       Attribute.new(:attribute_type_id => 134908234098).should_not be_valid
+      boolean_attribute.attribute_type_id = 234234
+      boolean_attribute.should_not be_valid
     end
 
     it 'should validate the existence of the resource' do
       Attribute.new(:resource_id => 134908234098).should_not be_valid
+      boolean_attribute.resource_id = 32490823
+      boolean_attribute.should_not be_valid
     end
 
   end
