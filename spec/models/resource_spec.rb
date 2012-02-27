@@ -27,4 +27,15 @@ describe Resource do
 
   end
 
+  describe 'updating' do
+
+    it 'should be able to update name' do
+      new_name = 'This is the new name'
+      resource.name = new_name
+      resource.save
+      resource.name.should == new_name
+    end
+
+  end
+
 end
