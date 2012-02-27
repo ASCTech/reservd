@@ -11,24 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223215014) do
+ActiveRecord::Schema.define(:version => 20120227220529) do
 
-  create_table "attribute_types", :force => true do |t|
-    t.string   "name"
-    t.string   "data_type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "attributes", :force => true do |t|
-    t.integer  "attribute_type_id"
+  create_table "properties", :force => true do |t|
+    t.integer  "property_type_id"
     t.integer  "resource_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.boolean  "boolean_value"
     t.integer  "integer_value"
     t.string   "string_value"
     t.date     "date_value"
+  end
+
+  create_table "property_types", :force => true do |t|
+    t.string   "name"
+    t.string   "data_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "resource_types", :force => true do |t|

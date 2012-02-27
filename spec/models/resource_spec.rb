@@ -8,21 +8,21 @@ describe Resource do
     resource.should be_valid
   end
 
-  describe 'interaction with attributes' do
+  describe 'interaction with propertys' do
 
-    let(:string_attribute) { create(:string_attribute) }
+    let(:string_property) { create(:string_propibute) }
 
     before do
-      @int_attr = create(:integer_attribute, :resource => resource, :value => 88)
+      @int_prop = create(:integer_property, :resource => resource, :value => 88)
     end
 
-    it 'should allow accessing an attribute by its name' do
-      resource.send(@int_attr.name).should == 88
+    it 'should allow accessing an property by its name' do
+      resource.send(@int_prop.name).should == 88
     end
 
-    it 'should allowing setting the value of an attribute by its name' do
-      resource.send("#{@int_attr.name}=", 44)
-      resource.send(@int_attr.name).should == 44
+    it 'should allowing setting the value of an property by its name' do
+      resource.send("#{@int_prop.name}=", 44)
+      resource.send(@int_prop.name).should == 44
     end
 
   end

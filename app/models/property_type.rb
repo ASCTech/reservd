@@ -1,6 +1,6 @@
-class AttributeType < ActiveRecord::Base
+class PropertyType < ActiveRecord::Base
 
-  has_many :attributes
+  has_many :properties
 
   DATATYPES = ['boolean', 'string', 'integer', 'date']
 

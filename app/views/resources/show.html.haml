@@ -4,8 +4,8 @@
   .span4
     %table.table.table-striped.table-bordered
       %tbody
-        - @resource.attributes.each do |attribute|
+        - @resource.properties.each do |property|
           %tr
             %td
-              %strong= attribute.name
-            %td= attribute.value
+              %strong= property.name
+            %td= property.value
