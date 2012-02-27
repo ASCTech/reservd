@@ -1,0 +1,6 @@
+%h2 Edit #{@resource.name}
+= form_for @resource do |f|
+  %div
+    Name
+    = f.text_field :name
+  = f.submit 'Update', :class => 'btn btn-primary'
