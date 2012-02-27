@@ -10,11 +10,19 @@ describe Resource do
 
   describe 'interaction with attributes' do
 
-    let(:boolean_attribute) { create(:boolean_attribute) }
+    let(:string_attribute) { create(:string_attribute) }
+
+    before do
+      @int_attr = create(:integer_attribute, :resource => resource, :value => 88)
+    end
 
     it 'should allow accessing an attribute by its name' do
-      resource.attributes.create!(boolean_attribute.attributes)
-      resource.send(boolean_attribute.name).should == boolean_attribute.value
+      resource.send(@int_attr.name).should == 88
+    end
+
+    it 'should allowing setting the value of an attribute by its name' do
+      resource.send("#{@int_attr.name}=", 44)
+      resource.send(@int_attr.name).should == 44
     end
 
   end
