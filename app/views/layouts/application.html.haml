@@ -7,4 +7,12 @@
   = csrf_meta_tags
 
   %body
-    = yield
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %h3= link_to 'Reservd', '#', :class => 'brand'
+          %ul.nav
+            %li= link_to 'Resources', resources_path
+    .main
+      .container#page-wrapper
+        = content_for?(:content) ? yield(:content) : yield
