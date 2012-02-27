@@ -22,6 +22,10 @@ describe AttributeType do
           AttributeType.new(:name => 'is_a_thing', :data_type => 'integer').should_not be_valid
     end
 
+    it 'should validate presence of name' do
+      AttributeType.new(:data_type => 'string').should_not be_valid
+    end
+
   end
 
 end
