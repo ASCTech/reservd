@@ -3,7 +3,7 @@ class Attribute < ActiveRecord::Base
   belongs_to :resource
   belongs_to :attribute_type
 
-  delegate :data_type, :to => :attribute_type
+  delegate :data_type, :name, :to => :attribute_type
 
   validates_presence_of :attribute_type_id, :resource_id
   validates :resource,       :existence => true

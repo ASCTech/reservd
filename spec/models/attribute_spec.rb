@@ -86,4 +86,23 @@ describe Attribute do
 
   end
 
+  describe 'delegation' do
+
+    it 'should get data_type from AttributeType' do
+      boolean_attribute.data_type.should == boolean_attribute.attribute_type.data_type
+         date_attribute.data_type.should ==    date_attribute.attribute_type.data_type
+      integer_attribute.data_type.should == integer_attribute.attribute_type.data_type
+       string_attribute.data_type.should ==  string_attribute.attribute_type.data_type
+    end
+
+    it 'should get name from AttributeType' do
+      boolean_attribute.name.should == boolean_attribute.attribute_type.name
+         date_attribute.name.should ==    date_attribute.attribute_type.name
+      integer_attribute.name.should == integer_attribute.attribute_type.name
+       string_attribute.name.should ==  string_attribute.attribute_type.name
+
+    end
+
+  end
+
 end
