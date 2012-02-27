@@ -5,5 +5,6 @@ class AttributeType < ActiveRecord::Base
   DATATYPES = ['boolean', 'string', 'integer', 'date']
 
   validates_inclusion_of :data_type, :in => DATATYPES, :allow_nil => false
+  validates_uniqueness_of :name
 
 end

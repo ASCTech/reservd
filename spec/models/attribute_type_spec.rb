@@ -14,5 +14,14 @@ describe AttributeType do
     integer_type.should be_valid
   end
 
+  describe 'validations' do
+
+    it 'should not allow attribute types with the same name' do
+      AttributeType.create!(:name => 'is_a_thing', :data_type => 'boolean')
+          AttributeType.new(:name => 'is_a_thing', :data_type => 'boolean').should_not be_valid
+          AttributeType.new(:name => 'is_a_thing', :data_type => 'integer').should_not be_valid
+    end
+
+  end
 
 end
