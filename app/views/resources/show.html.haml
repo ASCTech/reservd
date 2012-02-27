@@ -1,8 +1,11 @@
-%h2= @resource.name
-
-%table
-  %tbody
-    %tr
-      - @resource.attributes.each do |attribute|
-        %td= attribute.name
-        %td= attribute.value
+.row
+  .span8
+    %h2= @resource.name
+  .span4
+    %table.table.table-striped.table-bordered
+      %tbody
+        - @resource.attributes.each do |attribute|
+          %tr
+            %td
+              %strong= attribute.name
+            %td= attribute.value
