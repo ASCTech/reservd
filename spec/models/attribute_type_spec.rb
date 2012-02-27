@@ -28,4 +28,16 @@ describe AttributeType do
 
   end
 
+  describe 'creation' do
+
+    it 'should change names into an acceptable form' do
+      AttributeType.create!(:data_type => 'boolean', :name => 'is_a_thing').name.should == 'is_a_thing'
+      AttributeType.create!(:data_type => 'boolean', :name => 'is a thing').name.should == 'is_a_thing'
+      AttributeType.create!(:data_type => 'boolean', :name => 'IS A THING').name.should == 'is_a_thing'
+      AttributeType.create!(:data_type => 'boolean', :name => 'is-a-thing').name.should == 'is_a_thing'
+      AttributeType.create!(:data_type => 'boolean', :name => '1s_4_7h1ng').name.should == 's_4_7h1ng'
+    end
+
+  end
+
 end
