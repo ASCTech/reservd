@@ -1,0 +1,8 @@
+%h2= @resource.name
+
+%table
+  %tbody
+    %tr
+      - @resource.attributes.each do |attribute|
+        %td= attribute.name
+        %td= attribute.value
