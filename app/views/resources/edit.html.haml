@@ -1,4 +1,15 @@
-= form_for @resource do |f|
-  = f.text_field :name, :class => 'big'
-  %div
-    = f.submit 'Update', :class => 'btn btn-primary'
+.row
+  .span8
+    = form_for @resource do |f|
+      = f.text_field :name, :class => 'big'
+      %div
+        = f.submit 'Update', :class => 'btn btn-primary'
+
+  .span4
+    %table.table.table-striped.table-bordered
+      %tbody
+        - @resource.properties.each do |property|
+          %tr
+            %td
+              %strong=  property.name
+            %td= property.value
