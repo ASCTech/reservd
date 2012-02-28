@@ -1,5 +1,7 @@
 Reservd::Application.routes.draw do
 
-  resources :resources, :only => [:index, :show, :edit, :update]
+  resources :resources, :only => [:index, :show, :edit, :update] do
+    resources :properties, :only => [:destroy]
+  end
 
 end
