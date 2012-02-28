@@ -1,0 +1,11 @@
+%table.table.table-striped.table-bordered
+  %tbody
+    - @properties.each do |property|
+      %tr
+        %td
+          %strong=  property.name
+        %td= property.value
+        %td
+          = link_to resource_property_path(property.resource, property), :method => 'delete', :class => 'btn btn-danger' do
+            %i.icon-trash.icon-white
+
