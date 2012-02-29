@@ -1,3 +1,13 @@
-%ul
-- @resources.each do |resource|
-  %li= link_to resource.name, resource
+= form_tag resources_path, :method => "GET" do
+  = text_field_tag :q
+  = submit_tag "Search"
+
+- if @resources.present?
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Name
+    %tbody
+      - @resources.each do |resource|
+        %tr
+          %td= link_to resource.name, resource

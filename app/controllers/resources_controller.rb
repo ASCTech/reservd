@@ -1,7 +1,9 @@
 class ResourcesController < ApplicationController
 
   def index
-    @resources = Resource.all
+    if params[:q]
+      @resources = Resource.where("name LIKE '%#{params[:q]}%'")
+    end
   end
 
   def show
