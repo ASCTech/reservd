@@ -20,3 +20,7 @@ input.big {
   font-size: 24px;
   height: 36px;
 }
+
+.left-space {
+  margin-left: 10px;
+}
