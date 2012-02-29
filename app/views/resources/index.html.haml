@@ -1,6 +1,7 @@
 = form_tag resources_path, :method => "GET" do
   = text_field_tag :q
-  = submit_tag "Search"
+  %button.btn.btn-primary{ :type => "submit" }
+    %i.icon-white.icon-search
 
 - if @resources.present?
   %table.table.table-bordered.table-striped
