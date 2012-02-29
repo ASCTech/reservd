@@ -18,4 +18,8 @@ class PropertyType < ActiveRecord::Base
     self[:name] = self[:name].gsub(/[^a-z0-9_]/, '') #remove any characters that are not alpha, numeric or underscore
   end
 
+  def pretty_name
+    name.titleize
+  end
+
 end
