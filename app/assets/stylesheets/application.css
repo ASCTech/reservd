@@ -24,3 +24,7 @@ input.big {
 .left-space {
   margin-left: 10px;
 }
+
+form button {
+  vertical-align: top !important;
+}
