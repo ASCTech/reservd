@@ -5,10 +5,5 @@
       %i.icon-pencil
       Edit
   .span4
-    %table.table.table-striped.table-bordered
-      %tbody
-        - @resource.properties.each do |property|
-          %tr
-            %td
-              %strong= property.name
-            %td= property.value
+    - @properties = @resource.properties
+    = render :file => 'properties/index'
