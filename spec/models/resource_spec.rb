@@ -38,4 +38,21 @@ describe Resource do
 
   end
 
+  describe 'validations' do
+
+    let(:resource_type) { create(:resource_type) }
+
+    it 'should not allow non-existent resource types' do
+      Resource.new(:resource_type_id => resource_type.id, :name => 'Resource 1239').should be_valid
+      Resource.new(:resource_type_id => 234230948,       :name => 'Resource 1902').should_not be_valid
+    end
+
+    it 'should not allow resources of the same resource type to have the same name' do
+      attrs = { :resource_type_id => resource_type.id, :name => 'Same name' }
+      Resource.create!(attrs)
+      Resource.new(attrs).should_not be_valid
+    end
+
+  end
+
 end
