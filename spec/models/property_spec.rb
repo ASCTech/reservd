@@ -84,6 +84,16 @@ describe Property do
       boolean_property.should_not be_valid
     end
 
+    it 'should not allow multiple instances of the same property for a single resource' do
+      resource.properties.create(string_property.attributes).should be_valid
+      resource.properties.new(string_property.attributes).should_not be_valid
+    end
+
+    it 'should allow multiple resources to have the same property type' do
+      resource.properties.create(string_property.attributes).should be_valid
+      create(:resource).properties.create(string_property.attributes).should be_valid
+    end
+
   end
 
   describe 'delegation' do
