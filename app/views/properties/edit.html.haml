@@ -27,8 +27,19 @@
 :javascript
   $(function(){
     $("form.edit_property select").change(submitPropertyUpdateForm)
-    $("form.edit_property input[type='text']").keyup(submitPropertyUpdateForm).bind('input paste', submitPropertyUpdateForm)
+    $("form.edit_property input[type='text']").keyup(queuePropertyUpdate).bind('input paste', submitPropertyUpdateForm)
   })
+
+  var propertyUpdateTimeout
+
   function submitPropertyUpdateForm() {
     $.rails.handleRemote($(this).closest("form"))
+  }
+
+  function queuePropertyUpdate() {
+    var lastValue = $(this).data("last-value")
+    var currentValue = $(this).val()
+    if (currentValue == lastValue) { return }
+    if (propertyUpdateTimeout) { clearTimeout(propertyUpdateTimeout) }
+    propertyUpdateTimeout = setTimeout(submitPropertyUpdateForm, 500)
   }
