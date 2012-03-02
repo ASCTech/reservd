@@ -10,4 +10,9 @@ class PropertiesController < ApplicationController
     redirect_to edit_resource_path(Resource.find(params[:resource_id]))
   end
 
+  def update
+    Property.find(params[:id]).update_attributes(params[:property])
+    redirect_to edit_resource_path(Resource.find(params[:resource_id]))
+  end
+
 end
