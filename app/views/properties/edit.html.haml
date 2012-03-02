@@ -13,7 +13,7 @@
               = f.text_field(:value)
             - when "date"
               = f.text_field(:value, :class => "date_picker")
-            = f.submit "Update"
+            %noscript= f.submit "Update"
         %td
           = link_to resource_property_path(@resource, property), :method => 'delete', :class => 'btn btn-danger' do
             %i.icon-trash.icon-white
@@ -26,7 +26,9 @@
 
 :javascript
   $(function(){
-    $("form.edit_property select").change(function(){
-      $.rails.handleRemote($(this).closest("form"))
-    })
+    $("form.edit_property select").change(submitPropertyUpdateForm)
+    $("form.edit_property input[type='text']").keyup(submitPropertyUpdateForm).bind('input paste', submitPropertyUpdateForm)
   })
+  function submitPropertyUpdateForm() {
+    $.rails.handleRemote($(this).closest("form"))
+  }
