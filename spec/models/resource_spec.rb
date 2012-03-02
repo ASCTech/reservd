@@ -8,9 +8,7 @@ describe Resource do
     resource.should be_valid
   end
 
-  describe 'interaction with propertys' do
-
-    let(:string_property) { create(:string_propibute) }
+  describe 'interaction with properties' do
 
     before do
       @int_prop = create(:integer_property, :resource => resource, :value => 88)
@@ -23,6 +21,27 @@ describe Resource do
     it 'should allowing setting the value of an property by its name' do
       resource.send("#{@int_prop.name}=", 44)
       resource.send(@int_prop.name).should == 44
+    end
+
+  end
+
+  describe 'property types' do
+
+    let!(:integer_type) { create(:integer_type) }
+    let!(:boolean_type) { create(:boolean_type) }
+
+    it 'should know which property types can be added' do
+
+      resource.available_property_types.should include(integer_type)
+      resource.available_property_types.should include(boolean_type)
+
+      resource.properties.create!(:property_type_id => integer_type.id, :integer_value => 27)
+      resource.available_property_types.should_not include(integer_type)
+      resource.available_property_types.should     include(boolean_type)
+
+      resource.properties.create!(:property_type_id => boolean_type.id, :boolean_value => true)
+      resource.available_property_types.should_not include(integer_type)
+      resource.available_property_types.should_not include(boolean_type)
     end
 
   end

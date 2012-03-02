@@ -11,6 +11,6 @@
     = form_for [@resource, Property.new] do |f|
       = f.hidden_field :resource_id, :value => @resource.id
       %tr
-        %td= f.select(:property_type_id, options_from_collection_for_select(PropertyType.all, :id, :pretty_name))
+        %td= f.select(:property_type_id, options_from_collection_for_select(@resource.available_property_types, :id, :pretty_name))
         %td
         %td= f.submit 'Add', :class => 'btn btn-primary'

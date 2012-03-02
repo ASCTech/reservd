@@ -10,7 +10,8 @@ namespace :db do
       room_type    = ResourceType.create!(:name => 'Room')
       smith4187 = room_type.resources.create!(:name => '4187 Smith Lab')
       has_projector_type = PropertyType.create!(:name => 'has_projector', :data_type => 'boolean')
-      smith4187.properties.create!(:property_type_id => has_projector_type, :boolean_value => false)
+      smith4187.properties.create!(:property_type_id => has_projector_type.id, :boolean_value => false)
+      num_seats_type = PropertyType.create!(:name => 'number_of_seats', :data_type => 'integer')
     end
   end
 end
