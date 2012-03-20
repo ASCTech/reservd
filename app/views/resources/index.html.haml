@@ -4,6 +4,7 @@
     %i.icon-white.icon-search
 #search_suggest
   - if @resources.present?
+    .alert.alert-info Results for "#{@search_term}"
     %table.table.table-bordered.table-striped
       %thead
         %tr
