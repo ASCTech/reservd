@@ -1,5 +1,5 @@
 = form_tag resources_path, :method => "GET", :id => "frmSearch" do
-  = text_field_tag :q, nil, :autocomplete => "off"
+  = text_field_tag :q, @search_term, :autocomplete => "off"
   %button.btn.btn-primary{ :type => "submit" }
     %i.icon-white.icon-search
 #search_suggest

@@ -2,7 +2,8 @@ class ResourcesController < ApplicationController
 
   def index
     if params[:q]
-      @resources = Resource.where("name LIKE '%#{params[:q]}%'").limit(10)
+      @search_term = params[:q]
+      @resources = Resource.where("name LIKE '%#{@search_term}%'").limit(10)
     end
   end
 
