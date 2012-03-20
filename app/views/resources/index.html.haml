@@ -12,6 +12,8 @@
         - @resources.each do |resource|
           %tr
             %td= link_to resource.name, resource
+  - elsif defined? @resources
+    .alert No results found.
 
 :javascript
   $(function(){
