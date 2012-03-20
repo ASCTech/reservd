@@ -1,7 +1,8 @@
 = form_tag resources_path, :method => "GET", :id => "frmSearch" do
   = text_field_tag :q, @search_term, :autocomplete => "off"
-  %button.btn.btn-primary{ :type => "submit" }
-    %i.icon-white.icon-search
+  %noscript
+    %button.btn.btn-primary{ :type => "submit" }
+      %i.icon-white.icon-search
 #search_suggest
   - if @resources.present?
     .alert.alert-info Results for "#{@search_term}"
