@@ -1,14 +1,23 @@
-= form_tag resources_path, :method => "GET" do
-  = text_field_tag :q
+= form_tag resources_path, :method => "GET", :id => "frmSearch" do
+  = text_field_tag :q, nil, :autocomplete => "off"
   %button.btn.btn-primary{ :type => "submit" }
     %i.icon-white.icon-search
-
-- if @resources.present?
-  %table.table.table-bordered.table-striped
-    %thead
-      %tr
-        %th Name
-    %tbody
-      - @resources.each do |resource|
+#search_suggest
+  - if @resources.present?
+    %table.table.table-bordered.table-striped
+      %thead
         %tr
-          %td= link_to resource.name, resource
+          %th Name
+      %tbody
+        - @resources.each do |resource|
+          %tr
+            %td= link_to resource.name, resource
+
+:javascript
+  $(function(){
+    $("input").keyup(function(){
+      $.get("resources", { q: $("#q").val() }, function(data){
+        $("#search_suggest").html($(data).find("div#search_suggest"));
+      });
+    });
+  });
