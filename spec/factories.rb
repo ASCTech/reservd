@@ -10,7 +10,7 @@ FactoryGirl.define do
     resource_type
   end
 
-  factory :attribute_type do
+  factory :property_type do
     factory :boolean_type do
       name 'has_projector'
       data_type 'boolean'
@@ -29,19 +29,19 @@ FactoryGirl.define do
     end
   end
 
-  factory :attribute do
+  factory :property do
     resource
-    factory :boolean_attribute do
-      association :attribute_type, :factory => :boolean_type
+    factory :boolean_property do
+      association :property_type, :factory => :boolean_type
     end
-    factory :string_attribute do
-      association :attribute_type, :factory => :string_type
+    factory :string_property do
+      association :property_type, :factory => :string_type
     end
-    factory :integer_attribute do
-      association :attribute_type, :factory => :integer_type
+    factory :integer_property do
+      association :property_type, :factory => :integer_type
     end
-    factory :date_attribute do
-      association :attribute_type, :factory => :date_type
+    factory :date_property do
+      association :property_type, :factory => :date_type
     end
   end
 

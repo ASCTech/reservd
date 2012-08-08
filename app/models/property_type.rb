@@ -1,6 +1,6 @@
-class AttributeType < ActiveRecord::Base
+class PropertyType < ActiveRecord::Base
 
-  has_many :attributes
+  has_many :properties
 
   DATATYPES = ['boolean', 'string', 'integer', 'date']
 
@@ -16,6 +16,10 @@ class AttributeType < ActiveRecord::Base
     self[:name] = self[:name].gsub(/[\s-]/, '_')     #replace all whitespace and hyphens with underscores
     self[:name] = self[:name].gsub(/^[0-9]/, '')     #remove leading digits
     self[:name] = self[:name].gsub(/[^a-z0-9_]/, '') #remove any characters that are not alpha, numeric or underscore
+  end
+
+  def pretty_name
+    name.titleize
   end
 
 end

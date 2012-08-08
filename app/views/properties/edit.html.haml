@@ -1,0 +1,45 @@
+%table.table.table-striped.table-bordered
+  %tbody
+    - @properties.each do |property|
+      %tr
+        %td
+          %strong= property.pretty_name
+        %td
+          = form_for [@resource, property] do |f|
+            - case property.data_type
+            - when "boolean"
+              = f.select(:value, options_for_select({"yes" => true, "no" => false}, property.value))
+            - when "integer", "string"
+              = f.text_field(:value)
+            - when "date"
+              = f.text_field(:value, :class => "date_picker")
+            %noscript= f.submit "Update"
+        %td
+          = link_to resource_property_path(@resource, property), :method => 'delete', :class => 'btn btn-danger' do
+            %i.icon-trash.icon-white
+    = form_for [@resource, Property.new] do |f|
+      = f.hidden_field :resource_id, :value => @resource.id
+      %tr
+        %td= f.select(:property_type_id, options_from_collection_for_select(@resource.available_property_types, :id, :pretty_name), {:prompt => ''}, {"data-placeholder" => "Select Property"})
+        %td
+          %td= f.submit 'Add', :class => 'btn btn-primary'
+
+:javascript
+  $(function(){
+    $("form.edit_property select").change(submitPropertyUpdateForm)
+    $("form.edit_property input[type='text']").keyup(queuePropertyUpdate).bind('input paste', submitPropertyUpdateForm)
+  })
+
+  var propertyUpdateTimeout
+
+  function submitPropertyUpdateForm() {
+    $.rails.handleRemote($(this).closest("form"))
+  }
+
+  function queuePropertyUpdate() {
+    var lastValue = $(this).data("last-value")
+    var currentValue = $(this).val()
+    if (currentValue == lastValue) { return }
+    if (propertyUpdateTimeout) { clearTimeout(propertyUpdateTimeout) }
+    propertyUpdateTimeout = setTimeout(submitPropertyUpdateForm, 500)
+  }

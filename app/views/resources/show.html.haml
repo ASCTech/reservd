@@ -1,11 +1,9 @@
 .row
   .span8
-    %h2= @resource.name
+    %h2.pull-left= @resource.name
+    = link_to edit_resource_path(@resource), :class => "btn left-space" do
+      %i.icon-pencil
+      Edit
   .span4
-    %table.table.table-striped.table-bordered
-      %tbody
-        - @resource.attributes.each do |attribute|
-          %tr
-            %td
-              %strong= attribute.name
-            %td= attribute.value
+    - @properties = @resource.properties
+    = render :file => 'properties/index'

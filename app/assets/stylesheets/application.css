@@ -10,8 +10,22 @@
  *
  *= require_self
  *= require_tree .
+ *= require chosen
 */
 
 .container#page-wrapper {
   margin-top: 50px;
+}
+
+input.big {
+  font-size: 24px;
+  height: 36px;
+}
+
+.left-space {
+  margin-left: 10px;
+}
+
+form button {
+  vertical-align: top !important;
 }

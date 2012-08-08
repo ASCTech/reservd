@@ -1,0 +1,10 @@
+.row
+  .span7
+    = form_for @resource do |f|
+      = f.text_field :name, :class => 'big'
+      %div
+        = f.submit 'Update', :class => 'btn btn-primary'
+
+  .span5
+    - @properties = @resource.properties
+    = render :file => 'properties/edit'

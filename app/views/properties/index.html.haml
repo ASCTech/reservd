@@ -1,0 +1,7 @@
+%table.table.table-striped.table-bordered
+  %tbody
+    - @properties.each do |property|
+      %tr
+        %td
+          %strong= property.pretty_name
+        %td= property.value
